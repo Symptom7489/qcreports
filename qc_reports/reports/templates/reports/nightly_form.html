@@ -1,0 +1,85 @@
+{% extends 'reports/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1>Hello World</h1>
+
+<!--If statement is the Post Submittal Page-->
+{% if submitted %}
+
+
+<h1>Submitted = True</h1>
+
+<!--ElseIf Statement is the NRSetup Form -->
+{% elif setup %}
+
+{{ ryan }}
+
+<hr>
+
+{{ numberOfEntities }}
+
+<hr>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        {{ formset|crispy }}
+
+        <input type="submit" value="Submit" class="btn btn-secondary">
+    </form>
+
+<!--Else statement is the initial GET request-->
+{% else %}
+
+<!--    <form action= '' method="POST">-->
+<!--        {% csrf_token %}-->
+<!--        <div class="form-group">-->
+<!--            <label for="project-select">Select Project </label>-->
+<!--            <select class="form-control" id="project-select">-->
+<!--                {% for project in projects %}-->
+<!--                    <option>{{ project }}</option>-->
+<!--                {% endfor %}-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="jmf-select">Select Project </label>-->
+<!--            <select class="form-control" id="jmf-select">-->
+<!--                {% for jmf in jmfs %}-->
+<!--                    <option>{{ jmf }}</option>-->
+<!--                {% endfor %}-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for='numberOfEntries'>Number of Entries</label>-->
+<!--            <input type="number" class="form-control" id="numberOfEntries">-->
+<!--        </div>-->
+<!--        <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">-->
+<!--          <input placeholder="Select date" type="text" id="example" class="form-control">-->
+<!--          <label for="example">Number of Readings</label>-->
+<!--          <i class="fas fa-calendar input-prefix" tabindex=0></i>-->
+<!--        </div>-->
+<!--        <button type="submit" class="btn btn-primary mb-2">Submit</button>-->
+<!--    </form>-->
+
+
+
+<h3> Get </h3>
+
+{{ jmf }}
+<hr>
+
+    <form action = '' method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <input type="submit" value="Submit" class="btn btn-secondary">
+    </form>
+
+
+{% endif %}
+<hr>
+End
+
+{% endblock content %}

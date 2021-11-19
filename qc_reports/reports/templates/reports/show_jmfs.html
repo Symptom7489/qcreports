@@ -1,0 +1,49 @@
+{% extends 'reports/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container-fluid">
+        <table class='table-borderless col-lg-4'>
+            <thread>
+                <tr>
+                    <th class="table-title"><h1>JMF {{jmfs.jmf_number}}</h1></th>
+                </tr>
+            </thread>
+            <tbody class="table-body">
+                <tr>
+                    <td>Mix Type: {{jmfs.mix_type}}</td>
+                </tr>
+                <tr>
+                    <td>Mix Size: {{jmfs.mix_size}}</td>
+                </tr>
+                <tr>
+                    <td>Mix Gmm: {{jmfs.gmm}}</td>
+                </tr>
+                <tr>
+                    <td>Gauge Density: {{ jmfs.guage_density }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class='table-bordered col-lg-4'>
+            <thead>
+                <tr>
+                    <th class="table-title"><h1>Projects for JMF {{jmfs.jmf_number}}</h1></th>
+                </tr>
+            </thead>
+            <tbody>
+        {% for project in projects  %}
+            <tr>
+                <td>
+                    <a class="table-body site-links" href="{% url 'show-projects' project.id %}">
+                        {{ project }} </a>
+                </td>
+            </tr>
+        {% endfor %}
+            </tbody>
+        </table>
+        <br/>
+
+     </div>
+
+{% endblock content %}

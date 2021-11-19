@@ -1,0 +1,25 @@
+{%extends 'reports/base.html' %}
+{% load crispy_forms_tags %}
+{% block content%}
+    <div class="container-fluid">
+        <h1>New QC Report</h1>
+        <br/><br/>
+        {% if submitted %}
+
+            Your Report was Created Successfully!
+
+        {% else %}
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                {{ form|crispy }}
+
+                <input type="submit" value="Submit" class="btn btn-secondary">
+                <a class="site-links" href="/" class="btn btn-warning">Cancel</a>
+
+            </form>
+
+        {% endif %}
+    </div>
+
+{% endblock content %}

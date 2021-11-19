@@ -1,0 +1,36 @@
+{% extends 'reports/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="summary-text">
+        <h1>Project</h1>
+            <h1>{{ project }}</h1><br/>
+            Barber Project Number: {{ project.barber_number }}<br/>
+            State Project Number: {{ project.state_number }}<br/>
+            Project Name: {{ project.project_name }}
+        </div>
+
+        <table class='table-bordered col-lg-4'>
+            <thead>
+                <tr>
+                    <th class="table-title"><h2>JMFs in Project {{ project.project_name }}</h2></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for jmf in jmf_list  %}
+                    <tr>
+                        <td>
+                            <h3><a class="table-body site-links" href="{% url 'show-jmfs' jmf.id %}">
+                                {{ jmf }} </a></h3>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a class="btn btn-secondary" href="{% url 'update-projects' project.id %}" role="button">Add New JMF</a>
+
+    </div>
+
+{% endblock content %}
