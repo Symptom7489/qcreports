@@ -5,7 +5,11 @@ from .forms import ProjectForm, JmfForm, CoreReadingsForm
 from .forms import QCReportForm, Setup
 from django.http import HttpResponseRedirect
 from .models import Project, JMF, NightlyReadings
-from django.forms import modelformset_factory
+from django.forms import (
+    modelformset_factory,
+    HiddenInput
+)
+from operator import itemgetter
 
 # Create your views here.
 
@@ -101,6 +105,33 @@ def update_project(request, project_id):
     return render(request, 'reports/add_jmf.html', {'form': form, 'submitted': submitted,})
 
 
+def create_nightly_setup_formset(request):
+    setup_form = Setup(request.POST)
+    setup_fields = 'jmf', 'project', 'date', 'numberOfEntries'
+    if setup_form.is_valid():
+        # Grab the values from the valid Setup form
+        jmf, project, date, num_entries = (setup_form.cleaned_data.get(x) for x in setup_fields)
+        # Include them in each modelform as hidden fields
+        nightly_readings_formset = modelformset_factory(
+            NightlyReadings,
+            fields=('nightly_readings', 'jmf', 'project', 'date'),
+            widgets={
+                'jmf': HiddenInput(attrs={
+                    'value': jmf
+                }),
+                'project': HiddenInput(attrs={
+                    'value': project
+                }),
+                'date': HiddenInput(attrs={
+                    'value': date
+                }),
+
+            },
+            extra=num_entries
+        )
+        return nightly_readings_formset
+    
+    
 def nightly_form(request):
     numberOfEntries = 5
     submitted = False
