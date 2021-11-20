@@ -2,9 +2,21 @@ from django import forms
 from django.forms import ModelForm, modelformset_factory
 from .models import Project, QCReport, JMF, CoreReadings, NRSetup
 from django.db import models
+from datetime import datetime
 
+class DateSelectDefaultNow(forms.DateInput):
+    input_type = 'date'
 
+    def __init__(self, *args, **kwargs):
+        # Ensure attrs kwargs exists
+        kwargs['attrs'] = kwargs.get('attrs', {})
+        # Set our defaults
+        kwargs['attrs'].update({
+            'value': datetime.now().strftime("%Y-%m-%d"),
+        })
+        super().__init__(*args, **kwargs)
 
+        
 class DateInput(forms.DateInput):
     input_type = 'date'
 
@@ -68,16 +80,17 @@ class QCReportForm(ModelForm):
 # project_list =
 
 class Setup(forms.Form):
-    jmf = forms.CharField()
-    project = forms.CharField()
-    numberOfEntries = forms.IntegerField()
-    date = forms.DateField(widget=forms.SelectDateWidget())
+    jmf = forms.ModelChoiceField(
+        queryset=JMF.objects.all()
+    )
+    project = forms.ModelChoiceField(
+        queryset=Project.objects.all()
+    )
+    number_of_entries = forms.IntegerField()
+    date = forms.DateField(
+        widget=DateSelectDefaultNow()
+    )
 
-    widgets = {
-        'project': CheckBoxInput(),
-        'jmf': CheckBoxInput(),
-        'readings': CheckBoxInput(),
-    }
 
 
 # class NRSetup(ModelForm):
