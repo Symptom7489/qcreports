@@ -102,34 +102,20 @@ def update_project(request, project_id):
 
 
 def nightly_form(request):
-    numberOfEntries = 5
-    submitted = False
-    setup = False
     if request.method == 'POST':
-        NightlyReadingsFormset = modelformset_factory(NightlyReadings, fields=('nightly_readings',),
-                                                      extra=numberOfEntries)
-
-        # if request.method == 'POST' and setup == False:
-        setup = True
-        form = Setup(request.POST)
-        ryan = 'Ryan'
-        if form.is_valid():
-            jmf = form.cleaned_data['jmf']
-            project = form.cleaned_data['project']
-            numberOfEntries = form.cleaned_data['numberOfEntries']
-            date = form.cleaned_data['date']
-
-        formset = NightlyReadingsFormset
-        return render(request, 'reports/nightly_form.html', {'formset':formset, 'setup':setup, 'jmf':jmf,'project':project,'numberOfEntries':numberOfEntries, 'ryan':ryan })
-
-    # elif request.method == 'POST' and submitted == True:
-    #     formset = NightlyReadingsFormset(request.POST)
-    #     if formset.is_valid():
-    #         instance = formset.save()
-    #
-    #     return render(request, 'reports/nightly_form.html')
-
-
+        # NightlyReadingsFormset = modelformset_factory(NightlyReadings, fields=('nightly_readings',),
+        #                                               extra=numberOfEntries)
+        # form = Setup(request.POST)
+        # ryan = 'Ryan'
+        # if form.is_valid():
+        #     jmf = form.cleaned_data['jmf']
+        #     project = form.cleaned_data['project']
+        #     numberOfEntries = form.cleaned_data['numberOfEntries']
+        #     date = form.cleaned_data['date']
+        #
+        # formset = NightlyReadingsFormset
+        return render(request, 'reports/nightly_form_entry.html',)
+        # {'formset':formset, 'setup':setup, 'jmf':jmf,'project':project,'numberOfEntries':numberOfEntries, 'ryan':ryan })
 
     else:
         jmfs = JMF.objects.all

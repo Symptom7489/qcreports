@@ -1,6 +1,6 @@
 from django import forms
-from django.forms import ModelForm, modelformset_factory
-from .models import Project, QCReport, JMF, CoreReadings, NRSetup
+from django.forms import ModelForm, widgets
+from .models import Project, QCReport, JMF, CoreReadings
 from django.db import models
 
 
@@ -78,21 +78,3 @@ class Setup(forms.Form):
         'jmf': CheckBoxInput(),
         'readings': CheckBoxInput(),
     }
-
-
-# class NRSetup(ModelForm):
-#     class Meta:
-#         model = NRSetup
-#         fields = ('project','jmf','numberOfEntries','date')
-#
-#         labels = { 'numberOfEntries': 'Number of Readings'}
-#
-#         widgets = { 'date': DateInput(),
-#                     'jmf': CheckBoxInput,
-#                     'project': CheckBoxInput
-#                     }
-
-
-
-
-

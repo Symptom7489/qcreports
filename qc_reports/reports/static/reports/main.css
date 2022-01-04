@@ -110,3 +110,8 @@ a.article-title:hover {
 .project-block {
     margin:20px;
 }
+
+.nightly-form {
+    margin: 10px;
+    color: blue;
+}
