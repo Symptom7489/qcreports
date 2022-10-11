@@ -2,7 +2,7 @@ import datetime
 from django.template.response import TemplateResponse
 from django.shortcuts import render, redirect
 from .forms import ProjectForm, JmfForm, CoreReadingsForm
-from .forms import QCReportForm, Setup
+from .forms import QCReportForm
 from django.http import HttpResponseRedirect
 from .models import Project, JMF, NightlyReadings
 from django.forms import modelformset_factory
@@ -114,11 +114,14 @@ def nightly_form(request):
         #     date = form.cleaned_data['date']
         #
         # formset = NightlyReadingsFormset
-        return render(request, 'reports/nightly_form_entry.html',)
+        return HttpResponseRedirect('/nightly_form_entry')
         # {'formset':formset, 'setup':setup, 'jmf':jmf,'project':project,'numberOfEntries':numberOfEntries, 'ryan':ryan })
 
     else:
         jmfs = JMF.objects.all
         projects = Project.objects.all
-        form = Setup
-        return render(request, 'reports/nightly_form.html', {'form':form, 'jmfs':jmfs,'projects':projects})
+        # form = Setup
+        return render(request, 'reports/nightly_form.html', {'jmfs':jmfs,'projects':projects})
+
+def nightly_form_entry(request):
+    return render(request, 'reports/nightly_form_entry.html')

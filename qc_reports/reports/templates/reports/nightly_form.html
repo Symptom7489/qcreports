@@ -5,93 +5,43 @@
 
 <h1>Hello World</h1>
 
-<!--If statement is the Post Submittal Page-->
-{% if submitted %}
-
-
-<h1>Submitted = True</h1>
-
-<!--ElseIf Statement is the NRSetup Form -->
-{% elif setup %}
-
-{{ ryan }}
-
-<hr>
-
-{{ numberOfEntities }}
-
-<hr>
-
     <form action="" method="POST">
-        {% csrf_token %}
+            {% csrf_token %}
 
-        {{ formset|crispy }}
-
-        <input type="submit" value="Submit" class="btn btn-secondary">
-    </form>
-
-<!--Else statement is the initial GET request-->
-{% else %}
-
-<!--    <form action= '' method="POST">-->
-<!--        {% csrf_token %}-->
-<!--        <div class="form-group">-->
-<!--            <label for="project-select">Select Project </label>-->
-<!--            <select class="form-control" id="project-select">-->
-<!--                {% for project in projects %}-->
-<!--                    <option>{{ project }}</option>-->
-<!--                {% endfor %}-->
-<!--            </select>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for="jmf-select">Select Project </label>-->
-<!--            <select class="form-control" id="jmf-select">-->
-<!--                {% for jmf in jmfs %}-->
-<!--                    <option>{{ jmf }}</option>-->
-<!--                {% endfor %}-->
-<!--            </select>-->
-<!--        </div>-->
-<!--        <div class="form-group">-->
-<!--            <label for='numberOfEntries'>Number of Entries</label>-->
-<!--            <input type="number" class="form-control" id="numberOfEntries">-->
-<!--        </div>-->
-<!--        <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">-->
-<!--          <input placeholder="Select date" type="text" id="example" class="form-control">-->
-<!--          <label for="example">Number of Readings</label>-->
-<!--          <i class="fas fa-calendar input-prefix" tabindex=0></i>-->
-<!--        </div>-->
-<!--        <button type="submit" class="btn btn-primary mb-2">Submit</button>-->
-<!--    </form>-->
-
-
-
-<h3> Get </h3>
-
-{{ jmfs }}
-
-    <form action=" " method="POST">
-        <div class="form-check nightly-form">
+        <div class="form-group">
+            <label class="report-label"> JMF Selection</label><br>
+            
             {% for j in jmfs %}
 
-                <input class="form-check-input" type="checkbox" value="">
+                <input class="form-control" name="jmf" type="radio" value="">
                 {{ j }}
+            <hr class="form-break">
             {% endfor %}
 </div>
+        <br>
 
+
+        <div class="form-group">
+            <label class="report-label"> Project Selection</label><br>
+            {% for p in projects %}
+
+            <input class="form-control" name="project" type="radio" value="">
+            {{ p }}
+            <hr class="form-break">
+            {% endfor %}
+        </div>
+
+        <div class="form-group">
+            <label for="number-of-entries">Number of Entries</label>
+            <input type="text" class="form-control" id="number-of-entries" placeholder="Number of Entries" style="width:60%">
+        </div>
+        <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">
+  <label for="report-date">Report Date:</label>
+  <input type="date" id="report-date" name="Report Date">
+</div>
+        <input class="btn btn-primary" type="submit" value="Submit">
     </form>
 
 <hr>
-
-    <form action = '' method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
-
-        <input type="submit" value="Submit" class="btn btn-secondary">
-    </form>
-
-
-{% endif %}
-<hr>
-End
 
 {% endblock content %}

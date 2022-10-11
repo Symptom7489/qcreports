@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap');
+
+:root {
+    --color-body: #b6cbce;
+    --color-heading: #eef3db;
+    --color-base: #556265;
+    --color-base2: #343d3f;
+    --color-brand: #e0f780;
+    --color-brand2: #deff58;
+    --sidbar-width: 240px;
+    --font-base: "Bai Jamjuree";
+}
+
+body {
+    min-height: 100vh;
+
+        background: linear-gradient(var(--color-base), var(--color-base2)), url(../images/paul-fiedler.jpg);
+        background-size: cover;
+        background-position: center;
+    color: var(--color-body);
+    font-family: var(--font-base), sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: var(--color-heading);
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-body);
+    transition: all 0.4s ease;
+}
+
+a:hover {
+    color: var(--color-brand);
+}
+
+img {
+    width: 100%;
+}
+
+.site-header {
+    margin-bottom: 120px;
+}
+/* NAVBAR */
+.navbar{
+    background-color: var(--color-base);
+    height: 70px;
+
+}
+.navbar .nav-link {
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.navbar .nav-link:hover {
+    color: var(--color-brand);
+}
+
+.navbar .nav-link.active {
+    color: var(--color-brand);
+}
+
+    .navbar-brand img {
+        border: 12px solid var(--color-brand);
+        object-fit: contain;
+    }
+.bb_image {
+    height: 30px;
+    margin-top: 150px;
+
+}
+
+
+
+    /* CONTENT WRAPPER */
+    .content-wrapper {
+       display: inline-flex;
+        margin: 5rem 5rem 0 0 ;
+        height: 100vh;
+        gap: 5rem;
+        align-items: center;
+        width: 100vw;
+
+    }
+
+    .list-page {
+        align-items: center;
+    }
+
+/* BTN */
+
+.btn {
+    padding: 12px 28px;
+    font-weight: 700;
+    color: --var(--color-base);
+}
+
+.btn-brand {
+    background-color: var(--color-brand);
+    border-color: var(--color-brand);
+}
+
+.btn-brand:hover,
+.btn-brand:focus {
+    background-color: var(--color-brand2);
+    color: --var(--color-base);
+    border-color: var(--color-brand2);
+}
+
+.link-custom {
+    font-weight: 700;
+    position: relative;
+}
+
+.link-custom::after {
+    content: "";
+    width:0%;
+    height: 2px;
+    background-color: var(--color-brand);
+    position: absolute;
+    left: 0;
+    top: 110%;
+    transition: all 0.4s;
+}
+
+.link-custom:hover::after {
+    width:100%
+}
+
+.site-links {
+font-size: 1.2rem;
+}

@@ -12,5 +12,5 @@ urlpatterns = [
     path('test_data/',views.test_data, name='test-data'),
     path('update_project/<project_id>', views.update_project, name='update-projects'),
     path('nightly_form/', views.nightly_form, name='nightly-form'),
-    #path('nightly_form_setup/', views.nightly_form_setup, name= 'nightly-form-setup')
+    path('nightly_form_entry/', views.nightly_form_entry, name= 'nightly-form-entry'),
 ]

@@ -1,19 +1,19 @@
 {% extends 'reports/base.html' %}
 
 {% block content %}
-
-    <div class="container-fluid">
+<div class="content-wrapper">
+    <div class="container flex">
         <h1>Projects</h1>
         <br/>
         {% for project in project_list %}
-            <div class="table">
+            <div class="table ">
                 <a class="site-links" href="{% url 'show-projects' project.id %}">
                 {{ project }} </a> <br/>
             </div>
         {% endfor %}
     </div>
 
-    <div class="container-fluid">
+    <div class="container flex list-page">
         <h1>JMFs</h1>
         <br/>
         {% for jmf in jmf_list %}
@@ -24,5 +24,5 @@
 
         {% endfor %}
     </div>
-
+</div>
 {% endblock content %}

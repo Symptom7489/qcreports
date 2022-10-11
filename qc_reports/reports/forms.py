@@ -67,14 +67,14 @@ class QCReportForm(ModelForm):
 # jmf_list = JMF.objects.jmf_number
 # project_list =
 
-class Setup(forms.Form):
-    jmf = forms.CharField()
-    project = forms.CharField()
-    numberOfEntries = forms.IntegerField()
-    date = forms.DateField(widget=forms.SelectDateWidget())
-
-    widgets = {
-        'project': CheckBoxInput(),
-        'jmf': CheckBoxInput(),
-        'readings': CheckBoxInput(),
-    }
+# class Setup(forms.Form):
+#     jmf = forms.CharField()
+#     project = forms.CharField()
+#     numberOfEntries = forms.IntegerField()
+#     date = forms.DateField(widget=forms.SelectDateWidget())
+#
+#     widgets = {
+#         'project': CheckBoxInput(),
+#         'jmf': CheckBoxInput(),
+#         'readings': CheckBoxInput(),
+#     }
